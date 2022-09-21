@@ -7,10 +7,27 @@
 # Created:     18 09 2022
 # Copyright:   (c) Meit - PC 2022
 #-------------------------------------------------------------------------------
+import pystray,PIL.Image,datetime
+from wallpaper import set_wallpaper
 
-from infi.systray import SysTrayIcon
-def say_hello(systray):
-    print("Hello, World!")
-menu_options = (("Say Hello", None, say_hello),)
-systray = SysTrayIcon("DBC.ico", "DBC V1.0", menu_options)
-systray.start()
+current_time = datetime.datetime.now()
+hr = current_time.hour
+path = str(hr*1000) + ".png"
+
+set_wallpaper(path)
+
+
+
+
+image = PIL.Image.open(r"C:\Users\Meit - PC\Desktop\DBC\DBC.ico")
+def on_clicked(icon, item):
+    print("Hello world")
+def Exit():
+    icon.stop()
+
+icon = pystray.Icon("DBC",image, menu=pystray.Menu(
+    pystray.MenuItem("Say Hello", on_clicked),
+    pystray.MenuItem("Exit", Exit)
+))
+
+icon.run()
