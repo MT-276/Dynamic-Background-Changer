@@ -56,13 +56,16 @@ def change_wallpaper():
             btn.pack(side = 'bottom')
             root.mainloop()
             sys.exit()
-
 def Exit():
     icon.stop()
+    PROCNAME = "python.exe"
+    for proc in psutil.process_iter():
+        # check whether the process name matches
+        if proc.name() == PROCNAME:
+            proc.kill()
     beta = 1
     sys.exit()
     quit()
-
 def kill():
         root.destroy()
         sys.exit()
@@ -77,7 +80,7 @@ def tray_icon():
 
 #~~~~~~~~~~~~~~~~~~~~~~ Program ~~~~~~~~~~~~~~~~~~~~~~~
 try:
-    import win32con,pystray,PIL.Image,datetime,struct,ctypes,time,sys,os
+    import win32con,pystray,psutil,PIL.Image,datetime,struct,ctypes,time,sys,os
     from tkinter import *
     import multiprocessing as mp
 except:
