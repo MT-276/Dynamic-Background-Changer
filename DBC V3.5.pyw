@@ -15,11 +15,10 @@
 
 
 Refresh_time = 0.5         #In minutes
-Folder_path = r" Your folder path here "
+Folder_path = r"C:\Users\Meit - PC\Desktop\Python Programs\DBC\Bgs"
 
 
 #~~~~~~~~~~~~~~~~~~~~ Prerequisites ~~~~~~~~~~~~~~~~~~~
-
 def is_64_windows():
     """Find out how many bits is OS. """
     return struct.calcsize('P') * 8 == 64
@@ -27,6 +26,10 @@ def get_sys_parameters_info():
     """Based on if this is 32bit or 64bit returns correct version of SystemParametersInfo function. """
     return ctypes.windll.user32.SystemParametersInfoW if is_64_windows() \
         else ctypes.windll.user32.SystemParametersInfoA
+def getWallpaper():
+    ubuf = ctypes.create_unicode_buffer(512)
+    ctypes.windll.user32.SystemParametersInfoW(win32con.SPI_GETDESKWALLPAPER,len(ubuf),ubuf,0)
+    return ubuf.value
 def change_wallpaper():
     current_time = datetime.datetime.now()
     hr = current_time.hour
@@ -37,26 +40,29 @@ def change_wallpaper():
     path = "muk\muk"+str(hr_) + ".png"
     path = Folder_path+path
     WALLPAPER_PATH = path.replace("muk","")
-    sys_parameters_info = get_sys_parameters_info()
-    r = sys_parameters_info(SPI_SETDESKWALLPAPER, 0, WALLPAPER_PATH, 3)
-    if not r:
-        root = Tk()
-        root.title("Error")
-        root.geometry('300x80')
+    current_bg = getWallpaper()
+    if current_bg != WALLPAPER_PATH:
+        sys_parameters_info = get_sys_parameters_info()
+        r = sys_parameters_info(SPI_SETDESKWALLPAPER, 0, WALLPAPER_PATH, 3)
+        if not r:
+            root = Tk()
+            root.title("Error")
+            root.geometry('300x95')
 
-        a = Label(root, text ="An unknown error occured \nPlease Re-run the program (ERROR CODE -0x23494576)")
-        btn = Button(root, text = 'Ok', bd = '5',command = kill)
+            a = Label(root, text ="An unknown error occured \nPlease Re-run the program \n\n(ERROR CODE -0x23494576)")
+            btn = Button(root, text = 'Ok', bd = '5',command = kill)
 
-        a.pack(side = 'top')
-        btn.pack(side = 'bottom')
-        root.mainloop()
-        sys.exit()
+            a.pack(side = 'top')
+            btn.pack(side = 'bottom')
+            root.mainloop()
+            sys.exit()
 
 def Exit():
     icon.stop()
     beta = 1
     sys.exit()
     quit()
+
 def kill():
         root.destroy()
         sys.exit()
@@ -71,7 +77,7 @@ def tray_icon():
 
 #~~~~~~~~~~~~~~~~~~~~~~ Program ~~~~~~~~~~~~~~~~~~~~~~~
 try:
-    import pystray,PIL.Image,datetime,struct,ctypes,time,sys,os
+    import win32con,pystray,PIL.Image,datetime,struct,ctypes,time,sys,os
     from tkinter import *
     import multiprocessing as mp
 except:
@@ -79,9 +85,9 @@ except:
     from tkinter import *
     root = Tk()
     root.title("Error")
-    root.geometry('300x80')
+    root.geometry('300x95')
 
-    a = Label(root, text ="You have not run the installer. \nPlease run the Installer first (ERROR CODE -0x9348734A)")
+    a = Label(root, text ="You have not run the installer. \nPlease run the Installer first \n\n(ERROR CODE -0x9348734A)")
     btn = Button(root, text = 'Ok', bd = '5',command = kill)
 
     a.pack(side = 'top')
@@ -95,16 +101,30 @@ if os.path.exists(Folder_path) == False:
     from tkinter import *
     root = Tk()
     root.title("Error")
-    root.geometry('300x80')
+    root.geometry('300x95')
 
-    a = Label(root, text ="The specified path doesn't exist.\nPlease try again (ERROR CODE -0x46573445)")
+    a = Label(root, text ="The specified path doesn't exist.\nPlease try again \n\n(ERROR CODE -0x46573445)")
     btn = Button(root, text = 'Ok', bd = '5',command = kill)
 
     a.pack(side = 'top')
     btn.pack(side = 'bottom')
     root.mainloop()
 
-image = PIL.Image.open("DBC.ico")
+try:
+    image = PIL.Image.open("DBC.ico")
+except:
+    root = Tk()
+    root.title("Error")
+    root.geometry('300x95')
+
+    a = Label(root, text ="An unknown error occured \nPlease Re-run the program \n\n(ERROR CODE -0x39458784)")
+    btn = Button(root, text = 'Ok', bd = '5',command = kill)
+
+    a.pack(side = 'top')
+    btn.pack(side = 'bottom')
+    root.mainloop()
+    sys.exit()
+
 icon = pystray.Icon("DBC",image, menu=pystray.Menu(
         pystray.MenuItem("Refresh", change_wallpaper),
         pystray.MenuItem("Exit", Exit)
