@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        Dynamic Background Changer v2.0 [Global Release copy]
+# Name:        Dynamic Background Changer v3.4 [Global Release copy]
 #
 # Author:      MS Productions
 #
@@ -11,7 +11,7 @@
 
 
 Refresh_time = 0.5         #In minutes
-Folder_path = r"C:\Users\Meit - PC\Desktop\Python Programs\DBC\Bgs"
+Folder_path = r" Your folder path here "
 
 
 #~~~~~~~~~~~~~~~~~~~~ Prerequisites ~~~~~~~~~~~~~~~~~~~
