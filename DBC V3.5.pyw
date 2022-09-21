@@ -1,11 +1,15 @@
 #-------------------------------------------------------------------------------
-# Name:        Dynamic Background Changer v3.4 [Global Release copy]
+# Name:        Dynamic Background Changer v3.6
 #
-# Author:      MS Productions
+# Company:     Metsys
 #
 # Created:     19 09 2022
-# Copyright:   (c) MS Productions
+# Copyright:   (c) Metsys
+#
+# Lead Dev:    Meit Sant
+# Lead QA:     Roshan Boby
 #-------------------------------------------------------------------------------
+
 
 #~~~~~~~~~~~~~~~~~~~~ User Preferences ~~~~~~~~~~~~~~~~~~~
 
@@ -36,7 +40,18 @@ def change_wallpaper():
     sys_parameters_info = get_sys_parameters_info()
     r = sys_parameters_info(SPI_SETDESKWALLPAPER, 0, WALLPAPER_PATH, 3)
     if not r:
-        print(ctypes.WinError())
+        root = Tk()
+        root.title("Error")
+        root.geometry('300x80')
+
+        a = Label(root, text ="An unknown error occured \nPlease Re-run the program (ERROR CODE -0x23494576)")
+        btn = Button(root, text = 'Ok', bd = '5',command = kill)
+
+        a.pack(side = 'top')
+        btn.pack(side = 'bottom')
+        root.mainloop()
+        sys.exit()
+
 def Exit():
     icon.stop()
     beta = 1
@@ -49,15 +64,6 @@ def kill():
 
 def looping_the_cw():
     while beta==0:
-        current_time = datetime.datetime.now()
-        hr = current_time.hour
-        if hr>6:
-            hr_ = (hr*1000)-5000
-        elif hr<6:
-            hr_ = (hr*1000)+19000
-        path = "muk\muk"+str(hr_) + ".png"
-        path = r"C:\Users\Meit - PC\Desktop\Python Programs\DBC\Bgs"+path
-        WALLPAPER_PATH = path.replace("muk","")
         change_wallpaper()
         time.sleep(Refresh_time)
 def tray_icon():
@@ -75,7 +81,7 @@ except:
     root.title("Error")
     root.geometry('300x80')
 
-    a = Label(root, text ="You have not run the installer. \nPlease run the Installer first")
+    a = Label(root, text ="You have not run the installer. \nPlease run the Installer first (ERROR CODE -0x9348734A)")
     btn = Button(root, text = 'Ok', bd = '5',command = kill)
 
     a.pack(side = 'top')
@@ -91,7 +97,7 @@ if os.path.exists(Folder_path) == False:
     root.title("Error")
     root.geometry('300x80')
 
-    a = Label(root, text ="The specified path doesn't exist.\nPlease try again")
+    a = Label(root, text ="The specified path doesn't exist.\nPlease try again (ERROR CODE -0x46573445)")
     btn = Button(root, text = 'Ok', bd = '5',command = kill)
 
     a.pack(side = 'top')
