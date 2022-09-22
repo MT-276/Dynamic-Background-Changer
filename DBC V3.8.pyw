@@ -15,7 +15,7 @@
 
 
 Refresh_time = 0.5         #In minutes
-Folder_path = r"C:\Users\Meit - PC\Desktop\Python Programs\DBC\Bgs"
+Folder_path = r"Your path here"
 
 
 #~~~~~~~~~~~~~~~~~~~~ Prerequisites ~~~~~~~~~~~~~~~~~~~
