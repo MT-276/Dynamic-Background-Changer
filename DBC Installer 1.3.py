@@ -24,8 +24,8 @@ dependencies = [
     ('pystray'),
     ('struct'),
     ('Pillow'),
-    ('Pywin32')
-
+    ('Pywin32'),
+    ('Psutil')
 ]
 process_list = []
 
