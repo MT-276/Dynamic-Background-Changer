@@ -37,6 +37,8 @@ def change_wallpaper():
         hr_ = (hr*1000)-5000
     elif hr<6:
         hr_ = (hr*1000)+19000
+    elif hr == 6:
+        hr_ = 1000
     path = "muk\muk"+str(hr_) + ".png"
     path = Folder_path+path
     WALLPAPER_PATH = path.replace("muk","")
