@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        Dynamic Background Changer v3.6
+# Name:        Dynamic Background Changer v3.10
 #
 # Company:     Metsys
 #
@@ -52,29 +52,26 @@ def change_wallpaper():
             root.geometry('300x95')
 
             a = Label(root, text ="An unknown error occured \nPlease Re-run the program \n\n(ERROR CODE -0x23494576)")
-            btn = Button(root, text = 'Ok', bd = '5',command = kill)
+            btn = Button(root, text = 'Ok', bd = '5',command = Exit)
 
             a.pack(side = 'top')
             btn.pack(side = 'bottom')
             root.mainloop()
             sys.exit()
 def Exit():
+    root.destroy()
     icon.stop()
     PROCNAME = "python.exe"
     for proc in psutil.process_iter():
         # check whether the process name matches
         if proc.name() == PROCNAME:
             proc.kill()
-    beta = 1
     sys.exit()
     quit()
-def kill():
-        root.destroy()
-        sys.exit()
 #~~~~~~~~~~~~~ Main Multiprocessing Pools ~~~~~~~~~~~~~
 
 def looping_the_cw():
-    while beta==0:
+    while True:
         change_wallpaper()
         time.sleep(Refresh_time)
 def tray_icon():
@@ -93,7 +90,7 @@ except:
     root.geometry('300x95')
 
     a = Label(root, text ="You have not run the installer. \nPlease run the Installer first \n\n(ERROR CODE -0x9348734A)")
-    btn = Button(root, text = 'Ok', bd = '5',command = kill)
+    btn = Button(root, text = 'Ok', bd = '5',command = Exit)
 
     a.pack(side = 'top')
     btn.pack(side = 'bottom')
@@ -109,7 +106,7 @@ if os.path.exists(Folder_path) == False:
     root.geometry('300x95')
 
     a = Label(root, text ="The specified path doesn't exist.\nPlease try again \n\n(ERROR CODE -0x46573445)")
-    btn = Button(root, text = 'Ok', bd = '5',command = kill)
+    btn = Button(root, text = 'Ok', bd = '5',command = Exit)
 
     a.pack(side = 'top')
     btn.pack(side = 'bottom')
@@ -123,7 +120,7 @@ except:
     root.geometry('300x95')
 
     a = Label(root, text ="An unknown error occured \nPlease Re-run the program \n\n(ERROR CODE -0x39458784)")
-    btn = Button(root, text = 'Ok', bd = '5',command = kill)
+    btn = Button(root, text = 'Ok', bd = '5',command = Exit)
 
     a.pack(side = 'top')
     btn.pack(side = 'bottom')
@@ -134,7 +131,6 @@ icon = pystray.Icon("DBC",image, menu=pystray.Menu(
         pystray.MenuItem("Refresh", change_wallpaper),
         pystray.MenuItem("Exit", Exit)
     ))
-beta = 0
 p1 = mp.Process(target=looping_the_cw)
 p2 = mp.Process(target=tray_icon)
 
