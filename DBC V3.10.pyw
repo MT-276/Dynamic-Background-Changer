@@ -47,27 +47,34 @@ def change_wallpaper():
         sys_parameters_info = get_sys_parameters_info()
         r = sys_parameters_info(SPI_SETDESKWALLPAPER, 0, WALLPAPER_PATH, 3)
         if not r:
-            root = Tk()
-            root.title("Error")
-            root.geometry('300x95')
-
-            a = Label(root, text ="An unknown error occured \nPlease Re-run the program \n\n(ERROR CODE -0x23494576)")
-            btn = Button(root, text = 'Ok', bd = '5',command = Exit)
-
-            a.pack(side = 'top')
-            btn.pack(side = 'bottom')
-            root.mainloop()
-            sys.exit()
-def Exit():
-    root.destroy()
-    icon.stop()
-    PROCNAME = "python.exe"
+            Error_Disp("Could not find image\n\n(ERROR CODE -0x23494576)")
+def proc_kill(PROCNAME):
     for proc in psutil.process_iter():
         # check whether the process name matches
         if proc.name() == PROCNAME:
             proc.kill()
+def Exit():
+    icon.stop()
+    proc_kill("python.exe")
     sys.exit()
     quit()
+def Error_kill():
+    #root.destroy()
+    proc_kill("python.exe")
+    sys.exit()
+    quit()
+def Error_Disp(Message):
+    root = Tk()
+    root.title("Error")
+    root.geometry('300x95')
+
+    a = Label(root, text =Message)
+    btn = Button(root, text = 'Ok', bd = '5',command = Error_kill)
+
+    a.pack(side = 'top')
+    btn.pack(side = 'bottom')
+    root.mainloop()
+    sys.exit()
 #~~~~~~~~~~~~~ Main Multiprocessing Pools ~~~~~~~~~~~~~
 
 def looping_the_cw():
@@ -85,47 +92,15 @@ try:
 except:
     import sys
     from tkinter import *
-    root = Tk()
-    root.title("Error")
-    root.geometry('300x95')
-
-    a = Label(root, text ="You have not run the installer. \nPlease run the Installer first \n\n(ERROR CODE -0x9348734A)")
-    btn = Button(root, text = 'Ok', bd = '5',command = Exit)
-
-    a.pack(side = 'top')
-    btn.pack(side = 'bottom')
-    root.mainloop()
-    sys.exit()
+    Error_Disp("You have not run the installer. \nPlease run the Installer first \n\n(ERROR CODE -0x9348734A)")
 Refresh_time = Refresh_time *60
 SPI_SETDESKWALLPAPER = 20
-import os
 if os.path.exists(Folder_path) == False:
-    from tkinter import *
-    root = Tk()
-    root.title("Error")
-    root.geometry('300x95')
-
-    a = Label(root, text ="The specified path doesn't exist.\nPlease try again \n\n(ERROR CODE -0x46573445)")
-    btn = Button(root, text = 'Ok', bd = '5',command = Exit)
-
-    a.pack(side = 'top')
-    btn.pack(side = 'bottom')
-    root.mainloop()
-
+    Error_Disp("The specified path doesn't exist.\nPlease try again \n\n(ERROR CODE -0x46573445)")
 try:
     image = PIL.Image.open("DBC.ico")
 except:
-    root = Tk()
-    root.title("Error")
-    root.geometry('300x95')
-
-    a = Label(root, text ="An unknown error occured \nPlease Re-run the program \n\n(ERROR CODE -0x39458784)")
-    btn = Button(root, text = 'Ok', bd = '5',command = Exit)
-
-    a.pack(side = 'top')
-    btn.pack(side = 'bottom')
-    root.mainloop()
-    sys.exit()
+    Error_Disp("Tray Icon not found\n Please verify download location of the icon file \n\n(ERROR CODE -0x39458784)")
 
 icon = pystray.Icon("DBC",image, menu=pystray.Menu(
         pystray.MenuItem("Refresh", change_wallpaper),
