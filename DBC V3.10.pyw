@@ -58,18 +58,13 @@ def Exit():
     proc_kill("python.exe")
     sys.exit()
     quit()
-def Error_kill():
-    #root.destroy()
-    proc_kill("python.exe")
-    sys.exit()
-    quit()
 def Error_Disp(Message):
     root = Tk()
     root.title("Error")
     root.geometry('300x95')
 
     a = Label(root, text =Message)
-    btn = Button(root, text = 'Ok', bd = '5',command = Error_kill)
+    btn = Button(root, text = 'Ok', bd = '5',command = root.destroy)
 
     a.pack(side = 'top')
     btn.pack(side = 'bottom')
