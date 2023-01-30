@@ -14,8 +14,8 @@
 #~~~~~~~~~~~~~~~~~~~~ User Preferences ~~~~~~~~~~~~~~~~~~~
 
 
-Refresh_time = 1       #In seconds
-Folder_path = r"Your path here"
+Refresh_time = 5       #In seconds
+Folder_path = r"  > Your path here <   "
 
 
 #~~~~~~~~~~~~~~~~~~~~ Prerequisites ~~~~~~~~~~~~~~~~~~~
