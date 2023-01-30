@@ -14,7 +14,7 @@
 #~~~~~~~~~~~~~~~~~~~~ User Preferences ~~~~~~~~~~~~~~~~~~~
 
 
-Refresh_time = 0.5         #In minutes
+Refresh_time = 1       #In seconds
 Folder_path = r"Your path here"
 
 
@@ -88,7 +88,7 @@ except:
     import sys
     from tkinter import *
     Error_Disp("You have not run the installer. \nPlease run the Installer first \n\n(ERROR CODE -0x9348734A)")
-Refresh_time = Refresh_time *60
+#Refresh_time = Refresh_time *60
 SPI_SETDESKWALLPAPER = 20
 if os.path.exists(Folder_path) == False:
     Error_Disp("The specified path doesn't exist.\nPlease try again \n\n(ERROR CODE -0x46573445)")
