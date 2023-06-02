@@ -25,7 +25,8 @@ dependencies = [
     ('struct'),
     ('Pillow'),
     ('Pywin32'),
-    ('Psutil')
+    ('Psutil'),
+    ('Pystruct')
 ]
 process_list = []
 
