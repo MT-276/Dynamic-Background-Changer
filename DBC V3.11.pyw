@@ -1,15 +1,13 @@
-#-------------------------------------------------------------------------------
-# Name:        Dynamic Background Changer v3.10
-#
-# Company:     Metsys
-#
-# Created:     19 09 2022
-# Copyright:   (c) Metsys
-#
-# Lead Dev:    Meit Sant
-# Lead QA:     Roshan Boby
-#-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# Name:               Dynamic Background Changer v3.11
+#
+# Created:            19 09 2022
+# Developed by:       (c) MS Productions
+#
+# Lead Dev:           Meit Sant
+# Lead QA:            Roshan Boby
+#-------------------------------------------------------------------------------
 
 #~~~~~~~~~~~~~~~~~~~~ User Preferences ~~~~~~~~~~~~~~~~~~~
 
