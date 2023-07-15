@@ -13,16 +13,9 @@ def run_cmd(att):
     cmd = "pip install "+att
     os.system(cmd)
 
-dependencies = [
-    ('pynput'),
-    ('pyautogui'),
+dependencies = [,
     ('datetime'),
-    ('selenium'),
-    ('openpyxl'),
-    ('tkinter'),
-    ('numpy'),
     ('pystray'),
-    ('struct'),
     ('Pillow'),
     ('Pywin32'),
     ('Psutil'),
