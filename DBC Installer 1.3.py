@@ -1,19 +1,21 @@
 #-------------------------------------------------------------------------------
-# Name:        DBC Installations
-# Purpose:     Install necesarry components needed for DBC
+# Name:               DBC Installer
+# Purpose:            Install necesarry components needed for DBC
 #
-# Author:      MS Productions
-# Created:     19/09/2022
-# Copyright:   (c) MS Productions 2022
+# Created:            19 09 2022
+# Developed by:       (c) MS Productions
+#
+# Lead Dev:           Meit Sant
+# Lead QA:            Roshan Boby
 #-------------------------------------------------------------------------------
-import time ,sys , subprocess, os
+from os import system
 import multiprocessing as mp
 
 def run_cmd(att):
     cmd = "pip install "+att
-    os.system(cmd)
+    system(cmd)
 
-dependencies = [,
+dependencies = [
     ('datetime'),
     ('pystray'),
     ('Pillow'),
