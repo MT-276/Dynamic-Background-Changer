@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:               Dynamic Background Changer v3.11
+# Name:               Dynamic Background Changer v3.12
 #
 # Created:            19 09 2022
 # Developed by:       (c) MS Productions
@@ -12,7 +12,7 @@
 
 
 Refresh_time = 5       #In seconds
-Folder_path = "  > Your path here <   "
+Folder_path = r"  > Your path here <   "
 
 #~~~~~~~~~~~~~~~~~ Importing Modules ~~~~~~~~~~~~~~~~~~~~~
 
@@ -53,7 +53,7 @@ def change_wallpaper():
         hr_ = (hr*1000)+19000
     elif hr == 6:
         hr_ = 1000
-    WALLPAPER_PATH = f"{Folder_path}\\{str(hr_)}.png"
+    WALLPAPER_PATH = fr"{Folder_path}\{str(hr_)}.png"
     current_bg = getWallpaper()
     # If current bg is the one which was figured out. Then do nothing.
     if current_bg != WALLPAPER_PATH:

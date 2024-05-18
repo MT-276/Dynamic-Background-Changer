@@ -19,11 +19,13 @@ dependencies = [
     ('datetime'),
     ('pystray'),
     ('Pillow'),
-    ('Pywin32'),
+    ('pypiwin32'),
     ('Psutil'),
     ('Pystruct')
 ]
 process_list = []
+
+system('pip install numpy')
 
 for i in dependencies:
     process_list.append(mp.Process(target=run_cmd, args=(i,)))
