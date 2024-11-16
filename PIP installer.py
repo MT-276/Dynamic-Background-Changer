@@ -19,7 +19,7 @@ def get_path():
 
 
 def folder_path_in_path_variable(target_path, path_list):
-    """ Check if the target path is in a list of paths (looks for path\ also) """
+    """ Check if the target path is in a list of paths (looks for path\\ also) """
     return target_path in path_list or target_path + '\\' in path_list
 
 
@@ -41,6 +41,8 @@ def add_path(_path):
     new_path_value = get_path()
     return _path in new_path_value.split(';')
 
+# Initial information
+print(INFO + 'PIP Installer\n')
 
 # Give information about what we know
 print(INFO + 'This script is running on Python {0}.{1}.{2}'.format(sys.version_info.major, sys.version_info.minor, sys.version_info.micro))
@@ -108,6 +110,3 @@ if base_path_addition_required or scripts_path_addition_required:
             print(WARN + 'You will need to restart applications to get the new path variable value')
 else:
     input(INFO + 'No action required {press enter to continue}')
-print (' ')
-print (' ')
-print ('Now we need to install some neccesary modules')
